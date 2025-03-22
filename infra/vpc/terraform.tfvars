@@ -1,12 +1,12 @@
 #vpc
 region               = "us-west-2"
-vpc_cidr_block       = "10.0.0.0/16"
-instance_tenancy     = "default"
-enable_dns_support   = true
-enable_dns_hostnames = true
+vpc_cidr_block       = "10.0.0.0/16"     #allows for 65,536 IP addresses (from 10.0.0.0 to 10.0.255.255)
+instance_tenancy     = "default"         #instances launched into the VPC
+enable_dns_support   = true              #Should be true to enable DNS support in the VPC
+enable_dns_hostnames = true              #Should be true to enable DNS hostnames in the VPC
 
 #elastic ip
-domain = "vpc"
+domain = "vpc"                           #public IP addresses that remain constant even if the underlying instance is stopped or restarted.
 
 #nat-gateway
 create_nat_gateway = true
@@ -21,10 +21,10 @@ cost_center = "Shubham-commerce"
 application = "ecommerce"
 
 
-map_public_ip_on_launch = true
+map_public_ip_on_launch = true           # instances launched into the subnet should be assigned a public IP address
 
 #subnets
-public_subnet_cidr_blocks     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+public_subnet_cidr_blocks     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]     #Total IP addresses: 256 , Usable IP addresses in AWS: 251
 app_subnet_cidr_blocks        = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 db_subnet_cidr_blocks         = ["10.0.7.0/24", "10.0.8.0/24", "10.0.9.0/24"]
 management_subnet_cidr_blocks = ["10.0.10.0/24", "10.0.11.0/24", "10.0.12.0/24"]
@@ -34,7 +34,7 @@ platform_subnet_cidr_blocks   = ["10.0.13.0/24", "10.0.14.0/24", "10.0.15.0/24"]
 availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
 
 
-#Public Subnet NACL
+#Public Subnet NACL                        #All inbound traffic from any IP address, on any port, using any protocol is allowed
 ingress_public_nacl_rule_no    = [100]
 ingress_public_nacl_action     = ["allow"]
 ingress_public_nacl_from_port  = [0]
